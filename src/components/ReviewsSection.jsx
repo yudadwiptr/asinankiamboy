@@ -8,7 +8,12 @@ import {
   MapPin,
   Car,
 } from "lucide-react";
-import { CUSTOMER_REVIEWS, GOOGLE_REVIEWS_URL } from "../data/asinanData";
+import {
+  CUSTOMER_REVIEWS,
+  GOOGLE_REVIEWS_URL,
+  TIKTOK_URL,
+  TIKTOK_HANDLE,
+} from "../data/asinanData";
 
 function GoogleMapsPinIcon() {
   return (
@@ -65,16 +70,31 @@ export default function ReviewsSection() {
             </h2>
           </div>
 
-          <a
-            href={GOOGLE_REVIEWS_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 self-start lg:self-auto rounded-full bg-[#FAF7F2] hover:bg-[#F77F00] text-[#1B2E1E] hover:text-[#FAF7F2] px-6 py-3.5 text-xs sm:text-sm font-bold shadow-lg transition-all duration-200 group"
-          >
-            <GoogleMapsPinIcon />
-            <span>Lihat Semua Review di Google Maps</span>
-            <ExternalLink className="w-4 h-4 opacity-75 group-hover:translate-x-0.5 transition-transform" />
-          </a>
+          <div className="flex flex-wrap items-center gap-3 self-start lg:self-auto">
+            <a
+              href={TIKTOK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#111F13] hover:bg-black text-[#FAF7F2] border border-[#FAF7F2]/18 px-5 py-3.5 text-xs sm:text-sm font-bold shadow-lg transition-all duration-200 group"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-[#F7B267] shrink-0" aria-hidden="true">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+              </svg>
+              <span>Cek TikTok {TIKTOK_HANDLE}</span>
+              <ExternalLink className="w-3.5 h-3.5 opacity-75 group-hover:translate-x-0.5 transition-transform" />
+            </a>
+
+            <a
+              href={GOOGLE_REVIEWS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#FAF7F2] hover:bg-[#F77F00] text-[#1B2E1E] hover:text-[#FAF7F2] px-6 py-3.5 text-xs sm:text-sm font-bold shadow-lg transition-all duration-200 group"
+            >
+              <GoogleMapsPinIcon />
+              <span>Lihat Semua Review di Google Maps</span>
+              <ExternalLink className="w-4 h-4 opacity-75 group-hover:translate-x-0.5 transition-transform" />
+            </a>
+          </div>
         </div>
 
         {/* REVIEW CARDS GRID */}

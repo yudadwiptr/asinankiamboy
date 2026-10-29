@@ -9,6 +9,7 @@ import {
   MessageCircle,
   CheckCircle2,
   Sparkles,
+  ArrowUpRight,
 } from "lucide-react";
 import {
   STORE_INFO,
@@ -16,6 +17,8 @@ import {
   WHATSAPP_DISPLAY,
   GOOGLE_MAPS_DIRECTIONS_URL,
   GOOGLE_REVIEWS_URL,
+  TIKTOK_URL,
+  TIKTOK_HANDLE,
 } from "../data/asinanData";
 
 export default function LocationSection({ onOpenCart }) {
@@ -100,6 +103,18 @@ export default function LocationSection({ onOpenCart }) {
                 <PhoneCall className="w-4 h-4 text-[#E63946]" />
                 <span>WA: {WHATSAPP_DISPLAY}</span>
               </a>
+
+              <a
+                href={TIKTOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-[#111F13] hover:bg-black text-[#FAF7F2] px-5 py-3 text-xs sm:text-sm font-bold shadow-sm transition-colors"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-[#F7B267] shrink-0" aria-hidden="true">
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+                </svg>
+                <span>TikTok {TIKTOK_HANDLE}</span>
+              </a>
             </div>
           </motion.div>
 
@@ -148,39 +163,74 @@ export default function LocationSection({ onOpenCart }) {
         </div>
 
         {/* Minimalist Framed Footer */}
-        <footer className="mt-14 pt-8 border-t border-[#233D26]/12 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#3A5A3E]">
-          <div className="flex items-center gap-2.5 font-semibold text-[#1B2E1E]">
-            <img
-              src="/assets/logo-asinan-cutout.png"
-              onError={(e) => {
-                e.currentTarget.src = "/assets/logo-asinan-kiamboy.png";
-              }}
-              alt="Logo Asinan Kiamboy Milanial"
-              className="w-8 h-8 rounded-full object-contain shadow-xs"
-            />
-            <span className="font-serif-display text-base">
-              Asinan Kiamboy Milanial
-            </span>
-            <span className="text-[#3A5A3E]/50">•</span>
-            <span>Katulampa, Kota Bogor</span>
+        <footer className="mt-14 pt-8 border-t border-[#233D26]/12 flex flex-col gap-6 text-xs text-[#3A5A3E]">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-2.5 font-semibold text-[#1B2E1E]">
+              <img
+                src="/assets/logo-asinan-cutout.png"
+                onError={(e) => {
+                  e.currentTarget.src = "/assets/logo-asinan-kiamboy.png";
+                }}
+                alt="Logo Asinan Kiamboy Milanial"
+                className="w-8 h-8 rounded-full object-contain shadow-xs"
+              />
+              <span className="font-serif-display text-base">
+                Asinan Kiamboy Milanial
+              </span>
+              <span className="text-[#3A5A3E]/50">•</span>
+              <span>Katulampa, Kota Bogor</span>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-5 font-medium">
+              <a href="#hero-menu" className="hover:text-[#E63946] transition-colors">
+                Isian Buah
+              </a>
+              <a href="#ingredients" className="hover:text-[#E63946] transition-colors">
+                Keunggulan
+              </a>
+              <a
+                href={TIKTOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#E63946] transition-colors font-semibold"
+              >
+                TikTok ({TIKTOK_HANDLE})
+              </a>
+              <a
+                href={GOOGLE_REVIEWS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#E63946] transition-colors"
+              >
+                Google Reviews (5.0 ★)
+              </a>
+              <span>© {new Date().getFullYear()} Asinan Kiamboy Milanial</span>
+            </div>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-5 font-medium">
-            <a href="#hero-menu" className="hover:text-[#E63946] transition-colors">
-              Isian Buah
-            </a>
-            <a href="#ingredients" className="hover:text-[#E63946] transition-colors">
-              Keunggulan
-            </a>
+          {/* Agency Credit Badge — Build by Yuma Studio */}
+          <div className="pt-5 border-t border-[#233D26]/8 flex items-center justify-center">
             <a
-              href={GOOGLE_REVIEWS_URL}
+              href="https://yumastudio.digital/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[#E63946] transition-colors"
+              className="group inline-flex items-center gap-2.5 rounded-full bg-[#1B2E1E] hover:bg-[#233D26] text-[#FAF7F2] pl-2.5 pr-4 py-1.5 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5"
             >
-              Google Reviews (5.0 ★)
+              <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#FAF7F2]/10 p-1">
+                <img
+                  src="/assets/logo-yuma-studio.png"
+                  alt="Yuma Studio"
+                  className="w-full h-full object-contain"
+                />
+              </span>
+              <span className="text-[11px] sm:text-xs text-[#FAF7F2]/75 font-medium">
+                Build by{" "}
+                <strong className="font-bold text-[#FAF7F2] group-hover:text-[#F7B267] transition-colors">
+                  Yuma Studio
+                </strong>
+              </span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-[#F7B267] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
-            <span>© {new Date().getFullYear()} Asinan Kiamboy Milanial</span>
           </div>
         </footer>
       </div>

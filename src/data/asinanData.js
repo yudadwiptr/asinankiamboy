@@ -7,6 +7,10 @@ export const GOOGLE_REVIEWS_URL =
 export const GOOGLE_MAPS_DIRECTIONS_URL =
   "https://www.google.com/maps/search/?api=1&query=Jl.+Mutiara+Bogor+Raya+No.35+Blok+H4+Katulampa+Bogor+Timur+Kota+Bogor";
 
+export const TIKTOK_URL =
+  "https://www.tiktok.com/@ruzaqbogor?_r=1&_t=ZS-9AxWwNaV38Z";
+export const TIKTOK_HANDLE = "@ruzaqbogor";
+
 export const PRODUCT_PACKAGE = {
   id: "asinan-komplit-box",
   name: "Asinan Kiamboy Milanial",

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingBag, Menu, X, MapPin } from "lucide-react";
-import { formatRupiah } from "../data/asinanData";
+import { formatRupiah, TIKTOK_URL, TIKTOK_HANDLE } from "../data/asinanData";
 
 const NAV_LINKS = [
   { label: "Isian Buah", href: "#hero-menu" },
@@ -113,7 +113,14 @@ export default function Navbar({ totalItems, totalPrice, onOpenCart, cartBump })
                 <MapPin className="w-3.5 h-3.5 text-[#F77F00]" />
                 Katulampa, Kota Bogor
               </span>
-              <span className="text-[#8CE99A] font-semibold">● Segar Setiap Hari</span>
+              <a
+                href={TIKTOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#F7B267] hover:underline font-bold"
+              >
+                TikTok {TIKTOK_HANDLE}
+              </a>
             </div>
           </motion.div>
         )}
