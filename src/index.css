@@ -16,6 +16,13 @@
 
   body {
     overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  a,
+  button,
+  [role="button"] {
+    -webkit-tap-highlight-color: transparent;
   }
 }
 

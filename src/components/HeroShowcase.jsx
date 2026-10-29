@@ -165,21 +165,6 @@ export default function HeroShowcase({
         className="relative z-10 max-w-5xl mx-auto flex flex-col items-center"
       >
         <div className="relative w-full h-[395px] sm:h-[475px] md:h-[520px] flex items-end justify-center">
-          {/* Decorative orbital arc dashed line */}
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 800 420"
-            className="pointer-events-none absolute top-14 sm:top-16 w-[340px] sm:w-[660px] md:w-[780px] h-auto opacity-20 text-[#FAF7F2]"
-          >
-            <path
-              d="M 50 365 A 350 275 0 0 1 750 365"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeDasharray="6 8"
-            />
-          </svg>
-
           {/* Left / Right Step Buttons */}
           <button
             type="button"
@@ -221,12 +206,12 @@ export default function HeroShowcase({
               const scale = isActive
                 ? 1.1
                 : Math.abs(slot) < 1
-                ? 0.96
-                : Math.abs(slot) < 2
-                ? 0.9
-                : Math.abs(slot) < 3
-                ? 0.84
-                : 0.78;
+                  ? 0.96
+                  : Math.abs(slot) < 2
+                    ? 0.9
+                    : Math.abs(slot) < 3
+                      ? 0.84
+                      : 0.78;
 
               return (
                 <motion.button
@@ -255,11 +240,10 @@ export default function HeroShowcase({
                   style={{
                     pointerEvents: hiddenOnMobile ? "none" : "auto",
                   }}
-                  className={`group absolute w-[68px] h-[68px] sm:w-[88px] sm:h-[88px] md:w-[98px] md:h-[98px] aspect-square shrink-0 rounded-2xl bg-[#FAF7F2] p-1.5 sm:p-2 shadow-[0_18px_38px_rgba(10,22,12,0.38)] cursor-pointer transition-shadow focus:outline-none ${
-                    isActive
+                  className={`group absolute w-[68px] h-[68px] sm:w-[88px] sm:h-[88px] md:w-[98px] md:h-[98px] aspect-square shrink-0 rounded-2xl bg-[#FAF7F2] p-1.5 sm:p-2 shadow-[0_18px_38px_rgba(10,22,12,0.38)] cursor-pointer transition-shadow focus:outline-none ${isActive
                       ? "ring-3 ring-[#F77F00] shadow-[0_22px_48px_rgba(247,127,0,0.35)]"
                       : "ring-1 ring-[#FAF7F2]/60 hover:ring-2 hover:ring-[#FAF7F2]"
-                  }`}
+                    }`}
                   aria-label={`Lihat isian ${item.name}`}
                 >
                   <div className="w-full h-full rounded-xl overflow-hidden bg-[#FAF7F2] relative flex items-center justify-center">
@@ -273,11 +257,10 @@ export default function HeroShowcase({
 
                   {/* Ingredient Name Pill at Bottom of Card */}
                   <span
-                    className={`absolute -bottom-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-2 py-0.5 text-[8.5px] sm:text-[9.5px] font-bold shadow-sm transition-colors ${
-                      isActive
+                    className={`absolute -bottom-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-2 py-0.5 text-[8.5px] sm:text-[9.5px] font-bold shadow-sm transition-colors ${isActive
                         ? "bg-[#1A2E1C] text-[#FAF7F2]"
                         : "bg-[#FAF7F2] text-[#233D26] border border-[#233D26]/10"
-                    }`}
+                      }`}
                   >
                     {item.shortIngredient}
                   </span>
@@ -325,11 +308,10 @@ export default function HeroShowcase({
                 type="button"
                 onClick={() => setActiveIndex(idx)}
                 aria-label={`Lihat isian ${item.name}`}
-                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                  idx === activeIndex
+                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${idx === activeIndex
                     ? "w-7 bg-[#F77F00]"
                     : "w-1.5 bg-[#FAF7F2]/30 hover:bg-[#FAF7F2]/60"
-                }`}
+                  }`}
               />
             ))}
           </div>
@@ -363,7 +345,7 @@ export default function HeroShowcase({
           <div className="mt-3 px-2">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-[#FAF7F2]/12 border border-[#FAF7F2]/18 px-3.5 py-1.5 text-[11px] sm:text-xs font-semibold text-[#FAF7F2]/92">
               <Flame className="w-3.5 h-3.5 text-[#F77F00] fill-[#F77F00] shrink-0" />
-              <span>Kuah Kiamboy Sonkit Pedas Segar Khas · Langsung Meresap</span>
+              <span>Kuah Kiamboy Sonkit Pedas Segar Khas</span>
             </span>
           </div>
 
@@ -383,11 +365,10 @@ export default function HeroShowcase({
               onClick={handleQuickAdd}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.96 }}
-              className={`inline-flex items-center gap-2.5 rounded-full px-6 sm:px-7 py-3.5 text-sm sm:text-base font-bold text-[#FAF7F2] shadow-[0_14px_30px_rgba(230,57,70,0.42)] transition-all cursor-pointer ${
-                justAdded
+              className={`inline-flex items-center gap-2.5 rounded-full px-6 sm:px-7 py-3.5 text-sm sm:text-base font-bold text-[#FAF7F2] shadow-[0_14px_30px_rgba(230,57,70,0.42)] transition-all cursor-pointer ${justAdded
                   ? "bg-[#2B8A3E]"
                   : "bg-gradient-to-r from-[#E63946] via-[#EE5626] to-[#F77F00] hover:brightness-105"
-              }`}
+                }`}
             >
               {justAdded ? (
                 <>

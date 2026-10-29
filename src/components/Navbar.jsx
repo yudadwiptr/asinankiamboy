@@ -16,11 +16,11 @@ export default function Navbar({ totalItems, totalPrice, onOpenCart, cartBump })
   return (
     <header className="fixed top-4 sm:top-7 lg:top-8 inset-x-4 sm:inset-x-9 lg:inset-x-12 z-30 pointer-events-none">
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
-        {/* Top-Left Standalone Round Brand Logo (Strict aspect-square so it never compresses) */}
+        {/* Top-Left Standalone Round Brand Logo (Strict aspect-square & zero mobile tap-box) */}
         <a
           href="#hero-menu"
           aria-label="Asinan Kiamboy Milanial"
-          className="pointer-events-auto inline-flex items-center justify-center shrink-0 rounded-full transition-transform duration-300 hover:scale-105 active:scale-95 focus:outline-none"
+          className="pointer-events-auto inline-flex items-center justify-center shrink-0 rounded-full overflow-hidden select-none shadow-[0_10px_24px_rgba(0,0,0,0.32)] transition-transform duration-300 hover:scale-105 active:scale-95 focus:outline-none focus-visible:outline-none [-webkit-tap-highlight-color:transparent]"
         >
           <img
             src="/assets/logo-asinan-cutout.png"
@@ -28,7 +28,8 @@ export default function Navbar({ totalItems, totalPrice, onOpenCart, cartBump })
               e.currentTarget.src = "/assets/logo-asinan-kiamboy.png";
             }}
             alt="Logo Asinan Kiamboy Milanial"
-            className="w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 shrink-0 aspect-square rounded-full object-contain drop-shadow-[0_10px_22px_rgba(0,0,0,0.32)]"
+            draggable={false}
+            className="w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 shrink-0 aspect-square rounded-full object-cover select-none pointer-events-none"
           />
         </a>
 
