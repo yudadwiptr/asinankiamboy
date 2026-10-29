@@ -240,7 +240,7 @@ export default function HeroShowcase({
                     damping: 25,
                     mass: 0.9,
                   }}
-                  className={`pointer-events-auto group absolute w-[68px] h-[68px] sm:w-[96px] sm:h-[96px] md:w-[112px] md:h-[112px] rounded-2xl bg-[#FAF7F2] p-1.5 sm:p-2 shadow-[0_18px_38px_rgba(10,22,12,0.38)] cursor-pointer transition-shadow focus:outline-none ${
+                  className={`pointer-events-auto group absolute w-[68px] h-[68px] sm:w-[96px] sm:h-[96px] md:w-[112px] md:h-[112px] aspect-square shrink-0 rounded-2xl bg-[#FAF7F2] p-1.5 sm:p-2 shadow-[0_18px_38px_rgba(10,22,12,0.38)] cursor-pointer transition-shadow focus:outline-none ${
                     isActive
                       ? "ring-3 ring-[#F77F00] shadow-[0_22px_48px_rgba(247,127,0,0.35)]"
                       : "ring-1 ring-[#FAF7F2]/60 hover:ring-2 hover:ring-[#FAF7F2]"

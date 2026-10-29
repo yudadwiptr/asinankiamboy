@@ -108,7 +108,7 @@ export default function App() {
       />
 
       {/* Main Showcase Content */}
-      <main className="relative z-10">
+      <main className="relative z-10 pb-16 sm:pb-0">
         <HeroShowcase
           activeIndex={activeIndex}
           setActiveIndex={setActiveIndex}
