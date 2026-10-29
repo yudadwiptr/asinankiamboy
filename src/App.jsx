@@ -8,9 +8,9 @@ import AdvantagesSection from "./components/AdvantagesSection";
 import ReviewsSection from "./components/ReviewsSection";
 import LocationSection from "./components/LocationSection";
 import CartDrawer from "./components/CartDrawer";
-import { PRODUCT_PACKAGE, SPICE_LEVELS, formatRupiah } from "./data/asinanData";
+import { PRODUCT_PACKAGE, formatRupiah } from "./data/asinanData";
 
-const STORAGE_KEY = "asinan_kiamboy_milanial_cart_v3";
+const STORAGE_KEY = "asinan_kiamboy_milanial_cart_v4";
 
 export default function App() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -33,8 +33,8 @@ export default function App() {
     }
   }, [cartItems]);
 
-  const handleAddBoxToCart = useCallback((spiceOption = SPICE_LEVELS[0]) => {
-    const cartKey = `${PRODUCT_PACKAGE.id}__${spiceOption.id}`;
+  const handleAddBoxToCart = useCallback(() => {
+    const cartKey = PRODUCT_PACKAGE.id;
     const unitPrice = PRODUCT_PACKAGE.price;
 
     setCartItems((prev) => {
@@ -52,8 +52,6 @@ export default function App() {
           cartKey,
           name: PRODUCT_PACKAGE.name,
           image: PRODUCT_PACKAGE.image,
-          spiceId: spiceOption.id,
-          spiceLabel: spiceOption.label,
           unitPrice,
           quantity: 1,
         },
@@ -141,7 +139,7 @@ export default function App() {
               className="w-full flex items-center justify-between rounded-full bg-[#132315] text-[#FAF7F2] px-5 py-3.5 shadow-[0_16px_38px_rgba(0,0,0,0.38)] border border-[#FAF7F2]/15"
             >
               <div className="flex items-center gap-2.5">
-                <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#E63946] text-xs font-extrabold">
+                <span className="inline-flex items-center justify-center w-7 h-7 shrink-0 aspect-square rounded-full bg-[#E63946] text-xs font-extrabold">
                   {totalItems}
                 </span>
                 <span className="text-xs font-bold">Lihat Pesanan</span>

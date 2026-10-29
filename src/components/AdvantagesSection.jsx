@@ -8,11 +8,11 @@ import {
   Sparkles,
   Plus,
   CheckCircle2,
+  Flame,
 } from "lucide-react";
 import {
   ASINAN_INGREDIENTS,
   PRODUCT_PACKAGE,
-  SPICE_LEVELS,
   formatRupiah,
 } from "../data/asinanData";
 
@@ -23,9 +23,9 @@ const ADVANTAGE_CARDS = [
     badge: "Fresh Daily Cut",
     title: "100% Buah Segar Pilihan",
     description:
-      "Potongan buah segar berkualitas tinggi (mangga, rambutan, lengkeng, anggur) yang renyah dan manis alami di setiap gigitan.",
-    highlights: ["Mangga Muda Krenyes", "Anggur & Lengkeng", "Rambutan Segar"],
-    previewImages: ["/assets/card-anggur-lengkeng.jpg", "/assets/card-mangga.jpg"],
+      "Potongan buah segar berkualitas tinggi (mangga, nanas, salak, rambutan, lengkeng, anggur) yang renyah dan manis alami di setiap gigitan.",
+    highlights: ["Mangga, Nanas & Salak", "Anggur & Lengkeng", "Rambutan Segar"],
+    previewImages: ["/assets/card-anggur-lengkeng.jpg", "/assets/card-nanas.jpg"],
     theme: "light",
   },
   {
@@ -34,8 +34,8 @@ const ADVANTAGE_CARDS = [
     badge: "0% Pengawet & Pemanis Buatan",
     title: "Kuah Kiamboy Asli & Jeruk Sonkit",
     description:
-      "Perpaduan rasa manis, asam, asin, dan pedas segar yang autentik tanpa bahan pengawet maupun pemanis buatan.",
-    highlights: ["Plum Kiamboy Import", "Perasan Sonkit Murni", "Cabai Segar Pilihan"],
+      "Satu racikan standar autentik manis, asam, asin, dan pedas segar yang langsung dicampur agar meresap sempurna ke dalam buah.",
+    highlights: ["Plum Kiamboy Import", "Perasan Sonkit Murni", "Pedas Segar Meresap"],
     previewImages: ["/assets/card-kiamboy.jpg", "/assets/card-sonkit.jpg"],
     theme: "green",
   },
@@ -77,7 +77,7 @@ export default function AdvantagesSection({
           </div>
           <p className="text-sm sm:text-base text-[#3A5A3E] max-w-md leading-relaxed">
             Dibuat segar setiap hari di Kota Bogor menggunakan buah kupas pilihan
-            dan kuah kiamboy sonkit kental tanpa bahan pengawet.
+            dan kuah kiamboy sonkit pedas segar tanpa bahan pengawet.
           </p>
         </div>
 
@@ -107,7 +107,7 @@ export default function AdvantagesSection({
                 <div>
                   <div className="flex items-center justify-between gap-3 mb-6">
                     <div
-                      className={`w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm ${
+                      className={`w-12 h-12 shrink-0 aspect-square rounded-2xl flex items-center justify-center shadow-sm ${
                         isGreen
                           ? "bg-[#FAF7F2]/14 text-[#F7B267] border border-[#FAF7F2]/15"
                           : "bg-[#233D26] text-[#FAF7F2]"
@@ -130,12 +130,12 @@ export default function AdvantagesSection({
                     {card.previewImages.map((src, i) => (
                       <div
                         key={src}
-                        className={`relative rounded-2xl overflow-hidden bg-[#FAF7F2] p-1.5 shadow-md border ${
+                        className={`relative rounded-2xl overflow-hidden bg-[#FAF7F2] p-1.5 shadow-md border shrink-0 ${
                           isGreen ? "border-[#FAF7F2]/20" : "border-[#233D26]/10"
                         } ${
                           card.previewImages.length === 1
                             ? "w-24 h-20"
-                            : "w-20 h-20"
+                            : "w-20 h-20 aspect-square"
                         } transition-transform duration-300 group-hover:scale-105 ${
                           i === 1 ? "-rotate-3" : "rotate-2"
                         }`}
@@ -179,7 +179,7 @@ export default function AdvantagesSection({
                           : "bg-[#FAF7F2] text-[#233D26] border border-[#233D26]/10"
                       }`}
                     >
-                      <ShieldCheck className="w-3 h-3 text-[#E63946]" />
+                      <ShieldCheck className="w-3 h-3 text-[#E63946] shrink-0" />
                       {chip}
                     </span>
                   ))}
@@ -189,47 +189,55 @@ export default function AdvantagesSection({
           })}
         </div>
 
-        {/* KOMPOSISI ISIAN DALAM 1 BOX ASINAN */}
+        {/* KOMPOSISI 8 ISIAN DALAM 1 BOX ASINAN */}
         <div className="mt-12 rounded-3xl bg-white border border-[#233D26]/10 p-6 sm:p-8 shadow-[0_14px_40px_rgba(27,46,30,0.05)]">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-5 border-b border-[#233D26]/10">
             <div>
-              <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#E63946] uppercase tracking-wider mb-1">
-                <CheckCircle2 className="w-3.5 h-3.5" />
-                Komplit Dalam 1 Kemasan
-              </span>
+              <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#E63946] uppercase tracking-wider">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  Komplit Dalam 1 Kemasan
+                </span>
+                <span className="inline-flex items-center gap-1 rounded-full bg-[#233D26]/8 text-[#233D26] px-2.5 py-0.5 text-[11px] font-semibold">
+                  <Flame className="w-3 h-3 text-[#E63946]" />
+                  Kuah Pedas Segar Langsung Tercampur (Tidak Dipisah)
+                </span>
+              </div>
               <h3 className="font-serif-display text-2xl sm:text-3xl font-semibold text-[#1B2E1E]">
-                6 Isian Segar di Dalam Setiap Box
+                8 Isian Segar di Dalam Setiap Box
               </h3>
               <p className="text-xs sm:text-sm text-[#3A5A3E] mt-0.5">
-                Semua buah & bumbu di bawah ini sudah termasuk lengkap dalam 1 box Asinan Kiamboy Milanial.
+                Seluruh buah segar & bumbu kiamboy sonkit di bawah ini sudah termasuk lengkap dalam setiap box.
               </p>
             </div>
 
             <button
               type="button"
-              onClick={() => onQuickAddBox(SPICE_LEVELS[0])}
+              onClick={() => onQuickAddBox()}
               className="inline-flex items-center justify-center gap-2 self-start md:self-auto rounded-full bg-gradient-to-r from-[#E63946] to-[#F77F00] text-[#FAF7F2] px-6 py-3.5 text-xs sm:text-sm font-bold shadow-md hover:brightness-105 active:scale-97 transition-all cursor-pointer shrink-0"
             >
               <Plus className="w-4 h-4 stroke-[2.5]" />
-              <span>Tambah 1 Box Komplit · {formatRupiah(PRODUCT_PACKAGE.price)}</span>
+              <span>
+                Tambah 1 Box Komplit · {formatRupiah(PRODUCT_PACKAGE.price)}
+              </span>
             </button>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-4">
             {ASINAN_INGREDIENTS.map((item, idx) => {
               const isCurrent = idx === activeIndex;
               return (
                 <div
                   key={item.id}
                   onClick={() => onSelectIngredient(idx)}
-                  className={`group rounded-2xl p-3 transition-all cursor-pointer flex flex-col justify-between border ${
+                  className={`group rounded-2xl p-3.5 transition-all cursor-pointer flex flex-col justify-between border ${
                     isCurrent
                       ? "bg-[#233D26] text-[#FAF7F2] border-[#233D26] shadow-lg"
                       : "bg-[#FAF7F2]/70 hover:bg-[#FAF7F2] text-[#1B2E1E] border-[#233D26]/10"
                   }`}
                 >
                   <div>
-                    <div className="relative aspect-square rounded-xl overflow-hidden bg-[#FAF7F2] mb-2.5 p-1.5">
+                    <div className="relative aspect-square rounded-xl overflow-hidden bg-[#FAF7F2] mb-2.5 p-2">
                       <img
                         src={item.cardImage}
                         alt={item.name}
@@ -244,7 +252,7 @@ export default function AdvantagesSection({
                     >
                       {item.role}
                     </span>
-                    <h4 className="font-serif-display text-base font-semibold leading-snug">
+                    <h4 className="font-serif-display text-base sm:text-lg font-semibold leading-snug">
                       {item.name}
                     </h4>
                   </div>

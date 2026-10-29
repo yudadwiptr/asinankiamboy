@@ -13,7 +13,6 @@ import {
 import {
   ASINAN_INGREDIENTS,
   PRODUCT_PACKAGE,
-  SPICE_LEVELS,
   TIKTOK_URL,
   TIKTOK_HANDLE,
   formatRupiah,
@@ -24,14 +23,14 @@ export default function HeroShowcase({
   setActiveIndex,
   onAddToCart,
 }) {
-  const [selectedSpice, setSelectedSpice] = useState(SPICE_LEVELS[0]);
   const [justAdded, setJustAdded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const wheelLockRef = useRef(false);
   const touchStartXRef = useRef(null);
 
   const total = ASINAN_INGREDIENTS.length;
-  const activeIngredient = ASINAN_INGREDIENTS[activeIndex] || ASINAN_INGREDIENTS[0];
+  const activeIngredient =
+    ASINAN_INGREDIENTS[activeIndex] || ASINAN_INGREDIENTS[0];
 
   useEffect(() => {
     const updateViewport = () => {
@@ -88,16 +87,22 @@ export default function HeroShowcase({
   };
 
   const handleQuickAdd = () => {
-    onAddToCart(selectedSpice);
+    onAddToCart();
     setJustAdded(true);
     setTimeout(() => setJustAdded(false), 1300);
   };
 
-  // Symmetric 6-slot arc (-2.5, -1.5, -0.5, +0.5, +1.5, +2.5)
+  // Symmetric 8-slot arc (-3.5, -2.5, -1.5, -0.5, +0.5, +1.5, +2.5, +3.5)
   const getArcPosition = (index) => {
     const rel = (index - activeIndex + total) % total;
-    const slotOrder = [-0.5, 0.5, 1.5, 2.5, -2.5, -1.5];
-    return slotOrder[rel] ?? 0;
+    const slotOrder8 = [-0.5, 0.5, 1.5, 2.5, 3.5, -3.5, -2.5, -1.5];
+    if (total === 8) {
+      return slotOrder8[rel] ?? 0;
+    }
+    let diff = (index - activeIndex) % total;
+    if (diff > Math.floor(total / 2)) diff -= total;
+    if (diff < -Math.floor(total / 2)) diff += total;
+    return diff;
   };
 
   return (
@@ -124,7 +129,7 @@ export default function HeroShowcase({
         className="pointer-events-none absolute -bottom-36 -right-28 w-[28rem] h-[28rem] rounded-full bg-[#F77F00]/12 blur-3xl"
       />
 
-      {/* Top Social-Proof Pills with plenty of bottom margin so cards NEVER collide */}
+      {/* Top Social-Proof Pills */}
       <div className="relative z-10 max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-8">
         <span className="inline-flex items-center gap-1.5 rounded-full bg-[#FAF7F2]/10 backdrop-blur-md border border-[#FAF7F2]/15 px-3.5 py-1 text-[11px] sm:text-xs font-medium text-[#FAF7F2]/90">
           <Star className="w-3.5 h-3.5 fill-[#FBBF24] text-[#FBBF24]" />
@@ -140,7 +145,12 @@ export default function HeroShowcase({
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 rounded-full bg-[#FAF7F2]/12 hover:bg-[#FAF7F2] text-[#FAF7F2] hover:text-[#1B2E1E] backdrop-blur-md border border-[#FAF7F2]/20 px-3.5 py-1 text-[11px] sm:text-xs font-semibold transition-colors"
         >
-          <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5 shrink-0" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="w-3.5 h-3.5 shrink-0"
+            aria-hidden="true"
+          >
             <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
           </svg>
           <span>TikTok {TIKTOK_HANDLE}</span>
@@ -154,16 +164,15 @@ export default function HeroShowcase({
         onTouchEnd={handleTouchEnd}
         className="relative z-10 max-w-5xl mx-auto flex flex-col items-center"
       >
-        {/* Spacious Stage Container so top cards have generous headroom */}
         <div className="relative w-full h-[395px] sm:h-[475px] md:h-[520px] flex items-end justify-center">
           {/* Decorative orbital arc dashed line */}
           <svg
             aria-hidden="true"
             viewBox="0 0 800 420"
-            className="pointer-events-none absolute top-14 sm:top-16 w-[340px] sm:w-[620px] md:w-[740px] h-auto opacity-20 text-[#FAF7F2]"
+            className="pointer-events-none absolute top-14 sm:top-16 w-[340px] sm:w-[660px] md:w-[780px] h-auto opacity-20 text-[#FAF7F2]"
           >
             <path
-              d="M 70 360 A 330 270 0 0 1 730 360"
+              d="M 50 365 A 350 275 0 0 1 750 365"
               fill="none"
               stroke="currentColor"
               strokeWidth="1.5"
@@ -176,7 +185,7 @@ export default function HeroShowcase({
             type="button"
             onClick={() => stepCarousel(-1)}
             aria-label="Isian sebelumnya"
-            className="absolute left-0 sm:left-4 md:left-8 bottom-24 sm:bottom-32 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#FAF7F2]/12 hover:bg-[#FAF7F2] text-[#FAF7F2] hover:text-[#1D3520] backdrop-blur-md border border-[#FAF7F2]/20 flex items-center justify-center transition-all cursor-pointer shadow-lg active:scale-95"
+            className="absolute left-0 sm:left-2 md:left-4 bottom-24 sm:bottom-32 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#FAF7F2]/12 hover:bg-[#FAF7F2] text-[#FAF7F2] hover:text-[#1D3520] backdrop-blur-md border border-[#FAF7F2]/20 flex items-center justify-center transition-all cursor-pointer shadow-lg active:scale-95"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
@@ -185,36 +194,39 @@ export default function HeroShowcase({
             type="button"
             onClick={() => stepCarousel(1)}
             aria-label="Isian selanjutnya"
-            className="absolute right-0 sm:right-4 md:right-8 bottom-24 sm:bottom-32 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#FAF7F2]/12 hover:bg-[#FAF7F2] text-[#FAF7F2] hover:text-[#1D3520] backdrop-blur-md border border-[#FAF7F2]/20 flex items-center justify-center transition-all cursor-pointer shadow-lg active:scale-95"
+            className="absolute right-0 sm:right-2 md:right-4 bottom-24 sm:bottom-32 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#FAF7F2]/12 hover:bg-[#FAF7F2] text-[#FAF7F2] hover:text-[#1D3520] backdrop-blur-md border border-[#FAF7F2]/20 flex items-center justify-center transition-all cursor-pointer shadow-lg active:scale-95"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
 
-          {/* 6 CURVED FLOATING INGREDIENT CARDS (ISIAN DALAM 1 BOX) */}
+          {/* 8 CURVED FLOATING INGREDIENT CARDS (ISIAN DALAM 1 BOX) */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             {ASINAN_INGREDIENTS.map((item, idx) => {
               const slot = getArcPosition(idx);
               const isActive = idx === activeIndex;
+              // On narrow mobile screens, smoothly hide outer wrap-around pair (|slot| > 2.6) so 6 cards stay spacious
+              const hiddenOnMobile = isMobile && Math.abs(slot) > 2.6;
 
-              const angleDeg = slot * (isMobile ? 29 : 30);
+              const angleDeg = slot * (isMobile ? 29 : 22);
               const angleRad = (angleDeg * Math.PI) / 180;
-              const rx = isMobile ? 136 : 338;
-              const ry = isMobile ? 138 : 208;
+              const rx = isMobile ? 136 : 368;
+              const ry = isMobile ? 138 : 212;
 
-              // Positive y-offset shifts the arc downward cleanly away from top badges
               const x = Math.sin(angleRad) * rx;
               const y =
                 -Math.cos(angleRad) * ry +
-                (isMobile ? 42 : 66) -
+                (isMobile ? 42 : 64) -
                 (isActive ? 8 : 0);
-              const rotate = isActive ? 0 : slot * (isMobile ? 11 : 13);
+              const rotate = isActive ? 0 : slot * (isMobile ? 11 : 10);
               const scale = isActive
                 ? 1.1
                 : Math.abs(slot) < 1
-                ? 0.97
+                ? 0.96
                 : Math.abs(slot) < 2
                 ? 0.9
-                : 0.83;
+                : Math.abs(slot) < 3
+                ? 0.84
+                : 0.78;
 
               return (
                 <motion.button
@@ -226,8 +238,8 @@ export default function HeroShowcase({
                     x,
                     y,
                     rotate,
-                    scale,
-                    opacity: 1,
+                    scale: hiddenOnMobile ? 0.65 : scale,
+                    opacity: hiddenOnMobile ? 0 : 1,
                     zIndex: isActive ? 18 : Math.round(16 - Math.abs(slot) * 2),
                   }}
                   whileHover={{
@@ -240,7 +252,10 @@ export default function HeroShowcase({
                     damping: 25,
                     mass: 0.9,
                   }}
-                  className={`pointer-events-auto group absolute w-[68px] h-[68px] sm:w-[96px] sm:h-[96px] md:w-[112px] md:h-[112px] aspect-square shrink-0 rounded-2xl bg-[#FAF7F2] p-1.5 sm:p-2 shadow-[0_18px_38px_rgba(10,22,12,0.38)] cursor-pointer transition-shadow focus:outline-none ${
+                  style={{
+                    pointerEvents: hiddenOnMobile ? "none" : "auto",
+                  }}
+                  className={`group absolute w-[68px] h-[68px] sm:w-[88px] sm:h-[88px] md:w-[98px] md:h-[98px] aspect-square shrink-0 rounded-2xl bg-[#FAF7F2] p-1.5 sm:p-2 shadow-[0_18px_38px_rgba(10,22,12,0.38)] cursor-pointer transition-shadow focus:outline-none ${
                     isActive
                       ? "ring-3 ring-[#F77F00] shadow-[0_22px_48px_rgba(247,127,0,0.35)]"
                       : "ring-1 ring-[#FAF7F2]/60 hover:ring-2 hover:ring-[#FAF7F2]"
@@ -258,7 +273,7 @@ export default function HeroShowcase({
 
                   {/* Ingredient Name Pill at Bottom of Card */}
                   <span
-                    className={`absolute -bottom-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-2.5 py-0.5 text-[8.5px] sm:text-[10px] font-bold shadow-sm transition-colors ${
+                    className={`absolute -bottom-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-2 py-0.5 text-[8.5px] sm:text-[9.5px] font-bold shadow-sm transition-colors ${
                       isActive
                         ? "bg-[#1A2E1C] text-[#FAF7F2]"
                         : "bg-[#FAF7F2] text-[#233D26] border border-[#233D26]/10"
@@ -344,28 +359,12 @@ export default function HeroShowcase({
             </AnimatePresence>
           </div>
 
-          {/* Preference Pills (All Rp 35.000 Komplit!) */}
-          <div className="mt-3 flex flex-wrap items-center justify-center gap-1.5 px-2">
-            {SPICE_LEVELS.map((spice) => {
-              const isSelected = selectedSpice.id === spice.id;
-              return (
-                <button
-                  key={spice.id}
-                  type="button"
-                  onClick={() => setSelectedSpice(spice)}
-                  className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-[11px] sm:text-xs font-semibold transition-all cursor-pointer ${
-                    isSelected
-                      ? "bg-[#FAF7F2] text-[#1D3520] shadow-md scale-[1.03]"
-                      : "bg-[#FAF7F2]/10 text-[#FAF7F2]/80 hover:bg-[#FAF7F2]/20 border border-[#FAF7F2]/12"
-                  }`}
-                >
-                  {spice.id === "extra" && (
-                    <Flame className="w-3 h-3 text-[#E63946] fill-[#E63946]" />
-                  )}
-                  <span>{spice.label}</span>
-                </button>
-              );
-            })}
+          {/* Standard Authentic Kuah Info Badge (No Variation / Not Separated) */}
+          <div className="mt-3 px-2">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#FAF7F2]/12 border border-[#FAF7F2]/18 px-3.5 py-1.5 text-[11px] sm:text-xs font-semibold text-[#FAF7F2]/92">
+              <Flame className="w-3.5 h-3.5 text-[#F77F00] fill-[#F77F00] shrink-0" />
+              <span>Kuah Kiamboy Sonkit Pedas Segar Khas · Langsung Meresap</span>
+            </span>
           </div>
 
           {/* Price Tag Pill (Rp 35.000 / Box Komplit) + Add to Order CTA */}
@@ -408,7 +407,7 @@ export default function HeroShowcase({
         {/* GRAND EDITORIAL SERIF HEADLINE AT BOTTOM CENTER */}
         <div className="mt-8 sm:mt-10 pt-6 border-t border-[#FAF7F2]/12 w-full text-center">
           <p className="font-editorial italic text-lg sm:text-2xl text-[#F7B267] tracking-wide mb-1">
-            Semua 6 isian buah & rempah segar berpadu lengkap dalam satu box
+            Semua 8 isian buah & rempah segar berpadu lengkap dalam satu box
           </p>
           <h1 className="font-serif-display text-3xl sm:text-5xl md:text-6xl lg:text-[4rem] font-semibold tracking-tight leading-[1.06] text-[#FAF7F2]">
             Segarnya Asinan Kiamboy{" "}

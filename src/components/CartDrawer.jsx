@@ -10,10 +10,10 @@ import {
   MapPin,
   Sparkles,
   ArrowRight,
+  Flame,
 } from "lucide-react";
 import {
   PRODUCT_PACKAGE,
-  SPICE_LEVELS,
   WHATSAPP_NUMBER,
   WHATSAPP_DISPLAY,
   STORE_INFO,
@@ -45,7 +45,7 @@ export default function CartDrawer({
       "",
       ...cartItems.map(
         (item, idx) =>
-          `${idx + 1}. *${item.name}* (${item.spiceLabel}) × ${
+          `${idx + 1}. *${item.name}* (Box Komplit) × ${
             item.quantity
           } box — ${formatRupiah(item.unitPrice * item.quantity)}`
       ),
@@ -64,11 +64,16 @@ export default function CartDrawer({
     }
     if (addressOrNote.trim()) {
       lines.push(
-        `${deliveryMethod === "delivery" ? "Alamat / Catatan" : "Catatan"}: ${addressOrNote.trim()}`
+        `${
+          deliveryMethod === "delivery" ? "Alamat / Catatan" : "Catatan"
+        }: ${addressOrNote.trim()}`
       );
     }
 
-    lines.push("", "Mohon info ketersediaan & pembayarannya ya Kak. Terima kasih! 🙏");
+    lines.push(
+      "",
+      "Mohon info ketersediaan & pembayarannya ya Kak. Terima kasih! 🙏"
+    );
 
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
       lines.join("\n")
@@ -105,7 +110,7 @@ export default function CartDrawer({
             {/* Drawer Header */}
             <div className="px-6 py-5 bg-[#233D26] text-[#FAF7F2] flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#FAF7F2]/12 flex items-center justify-center">
+                <div className="w-10 h-10 shrink-0 aspect-square rounded-full bg-[#FAF7F2]/12 flex items-center justify-center">
                   <ShoppingBag className="w-5 h-5 text-[#F7B267]" />
                 </div>
                 <div>
@@ -113,7 +118,7 @@ export default function CartDrawer({
                     Pesanan Kamu
                   </h2>
                   <p className="text-xs text-[#FAF7F2]/75">
-                    {totalItems} box dipilih · Fast Pickup / Delivery Bogor
+                    {totalItems} box dipilih · Pickup / Delivery Bogor
                   </p>
                 </div>
               </div>
@@ -122,7 +127,7 @@ export default function CartDrawer({
                 type="button"
                 onClick={onClose}
                 aria-label="Tutup keranjang"
-                className="w-9 h-9 rounded-full bg-[#FAF7F2]/12 hover:bg-[#FAF7F2]/25 flex items-center justify-center transition-colors cursor-pointer"
+                className="w-9 h-9 shrink-0 aspect-square rounded-full bg-[#FAF7F2]/12 hover:bg-[#FAF7F2]/25 flex items-center justify-center transition-colors cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -132,7 +137,7 @@ export default function CartDrawer({
             <div className="flex-1 overflow-y-auto px-6 py-5 space-y-5">
               {cartItems.length === 0 ? (
                 <div className="py-8 text-center">
-                  <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-white p-2 border border-[#233D26]/10 shadow-xs flex items-center justify-center">
+                  <div className="w-24 h-24 mx-auto mb-4 rounded-2xl bg-white p-2 border border-[#233D26]/10 shadow-xs flex items-center justify-center">
                     <img
                       src={PRODUCT_PACKAGE.image}
                       alt={PRODUCT_PACKAGE.name}
@@ -142,45 +147,41 @@ export default function CartDrawer({
                   <h3 className="font-serif-display text-2xl font-semibold mb-1.5">
                     Keranjang Masih Kosong
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#3A5A3E] mb-6 max-w-xs mx-auto">
-                    1 Box Asinan Kiamboy Milanial ({formatRupiah(PRODUCT_PACKAGE.price)}) sudah komplit semua 6 isian buah segar!
+                  <p className="text-xs sm:text-sm text-[#3A5A3E] mb-6 max-w-xs mx-auto leading-relaxed">
+                    1 Box Asinan Kiamboy Milanial (
+                    {formatRupiah(PRODUCT_PACKAGE.price)}) sudah komplit 8 isian
+                    buah segar dengan kuah pedas segar khas!
                   </p>
 
-                  {/* Quick Add Box by Preference */}
-                  <div className="text-left space-y-2.5">
-                    <p className="text-[11px] font-bold uppercase tracking-wider text-[#3A5A3E]">
-                      Pilih Level Pedas / Kuah:
-                    </p>
-                    {SPICE_LEVELS.map((spice) => (
-                      <div
-                        key={spice.id}
-                        className="flex items-center justify-between gap-3 rounded-2xl bg-white p-3 border border-[#233D26]/10 shadow-xs"
-                      >
-                        <div className="flex items-center gap-3">
-                          <img
-                            src={PRODUCT_PACKAGE.image}
-                            alt={PRODUCT_PACKAGE.name}
-                            className="w-12 h-12 rounded-xl object-contain bg-[#FAF7F2] p-1"
-                          />
-                          <div>
-                            <h4 className="text-sm font-bold text-[#1B2E1E]">
-                              Box Komplit · {spice.label}
-                            </h4>
-                            <p className="text-xs font-semibold text-[#E63946]">
-                              {formatRupiah(PRODUCT_PACKAGE.price)} / Box
-                            </p>
-                          </div>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => onAddQuickBox(spice)}
-                          className="inline-flex items-center gap-1 rounded-full bg-[#233D26] hover:bg-[#E63946] text-[#FAF7F2] px-3 py-1.5 text-xs font-bold transition-colors cursor-pointer shrink-0"
-                        >
-                          <Plus className="w-3.5 h-3.5" />
-                          <span>Tambah</span>
-                        </button>
+                  {/* Single Standard Box Card */}
+                  <div className="rounded-2xl bg-white p-4 border border-[#233D26]/10 shadow-xs text-left space-y-3">
+                    <div className="flex items-center gap-3.5">
+                      <img
+                        src={PRODUCT_PACKAGE.image}
+                        alt={PRODUCT_PACKAGE.name}
+                        className="w-16 h-16 shrink-0 aspect-square rounded-xl object-contain bg-[#FAF7F2] p-1"
+                      />
+                      <div className="min-w-0 flex-1">
+                        <h4 className="text-sm font-bold text-[#1B2E1E]">
+                          {PRODUCT_PACKAGE.name}
+                        </h4>
+                        <p className="text-[11px] text-[#3A5A3E] mt-0.5">
+                          8 Isian Buah Segar · Kuah Pedas Segar (Tidak Dipisah)
+                        </p>
+                        <p className="text-sm font-extrabold text-[#E63946] mt-1">
+                          {formatRupiah(PRODUCT_PACKAGE.price)} / Box
+                        </p>
                       </div>
-                    ))}
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => onAddQuickBox()}
+                      className="w-full inline-flex items-center justify-center gap-1.5 rounded-full bg-[#233D26] hover:bg-[#E63946] text-[#FAF7F2] px-4 py-3 text-xs sm:text-sm font-bold transition-colors cursor-pointer"
+                    >
+                      <Plus className="w-4 h-4" />
+                      <span>Tambah 1 Box ke Keranjang</span>
+                    </button>
                   </div>
                 </div>
               ) : (
@@ -195,7 +196,7 @@ export default function CartDrawer({
                         <img
                           src={item.image}
                           alt={item.name}
-                          className="w-16 h-16 rounded-xl object-contain bg-[#FAF7F2] p-1 shrink-0 border border-[#233D26]/8"
+                          className="w-16 h-16 rounded-xl object-contain bg-[#FAF7F2] p-1 shrink-0 aspect-square border border-[#233D26]/8"
                         />
                         <div className="flex-1 min-w-0">
                           <div className="flex items-start justify-between gap-2">
@@ -206,14 +207,15 @@ export default function CartDrawer({
                               type="button"
                               onClick={() => onRemoveItem(item.cartKey)}
                               aria-label={`Hapus ${item.name}`}
-                              className="text-[#3A5A3E]/60 hover:text-[#E63946] transition-colors cursor-pointer"
+                              className="text-[#3A5A3E]/60 hover:text-[#E63946] transition-colors cursor-pointer shrink-0"
                             >
                               <Trash2 className="w-4 h-4" />
                             </button>
                           </div>
 
-                          <span className="inline-block rounded-full bg-[#FAF7F2] text-[#3A5A3E] px-2 py-0.5 text-[11px] font-semibold mt-0.5 mb-2 border border-[#233D26]/10">
-                            Isian Komplit · {item.spiceLabel}
+                          <span className="inline-flex items-center gap-1 rounded-full bg-[#FAF7F2] text-[#3A5A3E] px-2.5 py-0.5 text-[10.5px] font-semibold mt-0.5 mb-2 border border-[#233D26]/10">
+                            <Flame className="w-3 h-3 text-[#E63946] shrink-0" />
+                            <span>Komplit · Kuah Pedas Segar</span>
                           </span>
 
                           <div className="flex items-center justify-between">
@@ -228,7 +230,7 @@ export default function CartDrawer({
                                 onClick={() =>
                                   onUpdateQty(item.cartKey, item.quantity - 1)
                                 }
-                                className="w-6 h-6 rounded-full bg-white hover:bg-[#233D26] hover:text-[#FAF7F2] flex items-center justify-center text-xs transition-colors cursor-pointer shadow-2xs"
+                                className="w-6 h-6 shrink-0 aspect-square rounded-full bg-white hover:bg-[#233D26] hover:text-[#FAF7F2] flex items-center justify-center text-xs transition-colors cursor-pointer shadow-2xs"
                                 aria-label="Kurangi jumlah"
                               >
                                 <Minus className="w-3 h-3" />
@@ -241,7 +243,7 @@ export default function CartDrawer({
                                 onClick={() =>
                                   onUpdateQty(item.cartKey, item.quantity + 1)
                                 }
-                                className="w-6 h-6 rounded-full bg-[#233D26] text-[#FAF7F2] hover:bg-[#E63946] flex items-center justify-center text-xs transition-colors cursor-pointer"
+                                className="w-6 h-6 shrink-0 aspect-square rounded-full bg-[#233D26] text-[#FAF7F2] hover:bg-[#E63946] flex items-center justify-center text-xs transition-colors cursor-pointer"
                                 aria-label="Tambah jumlah"
                               >
                                 <Plus className="w-3 h-3" />
@@ -251,6 +253,10 @@ export default function CartDrawer({
                         </div>
                       </div>
                     ))}
+
+                    <p className="text-[11px] text-[#3A5A3E] bg-[#233D26]/6 rounded-xl px-3 py-2 font-medium">
+                      Info: Semua box memiliki takaran kuah pedas segar khas yang sama & langsung dicampur agar meresap (kuah tidak dipisah).
+                    </p>
                   </div>
 
                   {/* Quick Order Details Form */}
@@ -301,8 +307,8 @@ export default function CartDrawer({
                     <div>
                       <label className="block text-[11px] font-semibold text-[#3A5A3E] mb-1">
                         {deliveryMethod === "delivery"
-                          ? "Alamat Pengiriman di Bogor / Catatan"
-                          : "Jam Pickup / Catatan Tambahan (Opsional)"}
+                          ? "Alamat Pengiriman di Bogor / Patokan"
+                          : "Perkiraan Jam Pickup / Catatan (Opsional)"}
                       </label>
                       <textarea
                         rows={2}
@@ -310,7 +316,7 @@ export default function CartDrawer({
                         onChange={(e) => setAddressOrNote(e.target.value)}
                         placeholder={
                           deliveryMethod === "delivery"
-                            ? "Contoh: Perumahan Pajajaran Indah, minta kuah dipisah..."
+                            ? "Contoh: Perumahan Pajajaran Indah Blok B2, dekat taman..."
                             : "Contoh: Ambil jam 14.00 siang ini ya Kak..."
                         }
                         className="w-full rounded-xl bg-[#FAF7F2] border border-[#233D26]/15 px-3.5 py-2 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#233D26] resize-none"

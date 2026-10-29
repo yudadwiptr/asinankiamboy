@@ -14,7 +14,8 @@ export const TIKTOK_HANDLE = "@ruzaqbogor";
 export const PRODUCT_PACKAGE = {
   id: "asinan-komplit-box",
   name: "Asinan Kiamboy Milanial",
-  subtitle: "1 Box Komplit (Semua Isian Buah Segar + Kuah Kiamboy Sonkit)",
+  subtitle: "1 Box Komplit · 8 Isian Buah Segar & Kuah Pedas Segar Khas",
+  tasteNote: "Kuah Pedas Segar Khas (Langsung Tercampur · Tidak Dipisah)",
   price: 35000,
   image: "/assets/hero-asinan-cutout.png",
 };
@@ -24,7 +25,8 @@ export const ASINAN_INGREDIENTS = [
     id: "kiamboy",
     name: "Plum Kiamboy Asli",
     role: "Bumbu Utama Kuah",
-    tagline: "Plum kiamboy pilihan dengan perpaduan rasa asam, asin, dan manis autentik yang meresap sempurna",
+    tagline:
+      "Plum kiamboy pilihan dengan perpaduan rasa asam, asin, dan manis autentik yang meresap sempurna",
     cardImage: "/assets/card-kiamboy.jpg",
     shortIngredient: "Kiamboy",
     glowColor: "rgba(230, 57, 70, 0.34)",
@@ -33,7 +35,8 @@ export const ASINAN_INGREDIENTS = [
     id: "anggur-lengkeng",
     name: "Anggur & Lengkeng Segar",
     role: "Isian Buah Manis",
-    tagline: "Buah anggur renyah & daging lengkeng kupas tebal yang juicy menyeimbangkan segarnya kuah",
+    tagline:
+      "Buah anggur renyah & daging lengkeng kupas tebal yang juicy menyeimbangkan segarnya kuah",
     cardImage: "/assets/card-anggur-lengkeng.jpg",
     shortIngredient: "Anggur & Lengkeng",
     glowColor: "rgba(168, 85, 247, 0.30)",
@@ -42,7 +45,8 @@ export const ASINAN_INGREDIENTS = [
     id: "sonkit",
     name: "Jeruk Sonkit Murni",
     role: "Perasan Penyegar",
-    tagline: "Irisan & perasan jeruk sonkit (kalamansi) segar beraroma khas yang langsung bikin mata melek",
+    tagline:
+      "Irisan & perasan jeruk sonkit (kalamansi) segar beraroma khas yang langsung bikin mata melek",
     cardImage: "/assets/card-sonkit.jpg",
     shortIngredient: "Jeruk Sonkit",
     glowColor: "rgba(247, 127, 0, 0.34)",
@@ -51,16 +55,38 @@ export const ASINAN_INGREDIENTS = [
     id: "mangga",
     name: "Mangga Muda Krenyes",
     role: "Isian Buah Renyah",
-    tagline: "Potongan mangga muda segar pilihan dengan tekstur renyah di setiap gigitan",
+    tagline:
+      "Potongan mangga muda segar pilihan dengan tekstur renyah di setiap gigitan",
     cardImage: "/assets/card-mangga.jpg",
     shortIngredient: "Mangga Muda",
     glowColor: "rgba(245, 158, 11, 0.34)",
   },
   {
+    id: "nanas",
+    name: "Nanas Madu Segar",
+    role: "Isian Buah Tropis",
+    tagline:
+      "Potongan nanas madu kuning segar dengan rasa manis asam berair yang makin nikmat tersiram kuah kiamboy",
+    cardImage: "/assets/card-nanas.jpg",
+    shortIngredient: "Nanas Segar",
+    glowColor: "rgba(250, 204, 21, 0.34)",
+  },
+  {
+    id: "salak",
+    name: "Salak Pondoh Renyah",
+    role: "Isian Buah Krenyes",
+    tagline:
+      "Daging buah salak kupas pilihan yang garing, manis, dan renyah berpadu kuah pedas segar",
+    cardImage: "/assets/card-salak.jpg",
+    shortIngredient: "Salak Renyah",
+    glowColor: "rgba(217, 119, 6, 0.32)",
+  },
+  {
     id: "rambutan",
     name: "Rambutan Kupas Manis",
     role: "Isian Buah Segar",
-    tagline: "Daging buah rambutan kupas bersih yang manis lembut berpadu kuah asam pedas segar",
+    tagline:
+      "Daging buah rambutan kupas bersih yang manis lembut berpadu kuah asam pedas segar",
     cardImage: "/assets/card-rambutan.jpg",
     shortIngredient: "Rambutan",
     glowColor: "rgba(236, 72, 153, 0.30)",
@@ -68,8 +94,9 @@ export const ASINAN_INGREDIENTS = [
   {
     id: "cabai",
     name: "Cabai Rawit Merah",
-    role: "Sensasi Pedas Alami",
-    tagline: "Potongan cabai rawit merah segar alami tanpa bubuk buatan yang bikin nagih",
+    role: "Takaran Pedas Pas",
+    tagline:
+      "Racikan cabai rawit merah segar alami dengan satu standar rasa pedas segar khas di setiap box",
     cardImage: "/assets/card-cabai.jpg",
     shortIngredient: "Cabai Segar",
     glowColor: "rgba(220, 38, 38, 0.38)",
@@ -78,13 +105,6 @@ export const ASINAN_INGREDIENTS = [
 
 // Backward-compatible export alias
 export const ASINAN_VARIANTS = ASINAN_INGREDIENTS;
-
-export const SPICE_LEVELS = [
-  { id: "normal", label: "Pedas Segar", priceDelta: 0 },
-  { id: "medium", label: "Pedas Sedang", priceDelta: 0 },
-  { id: "extra", label: "Extra Pedas", priceDelta: 0 },
-  { id: "pisah-kuah", label: "Kuah Dipisah", priceDelta: 0 },
-];
 
 export const CUSTOMER_REVIEWS = [
   {
