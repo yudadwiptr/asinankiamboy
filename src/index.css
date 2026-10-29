@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: 'Playfair Display', 'Instrument Serif', Georgia, serif;
+    --font-editorial: 'Instrument Serif', 'Playfair Display', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    background-color: #FAF7F2;
+    color: #1B2E1E;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+}
+
+.font-serif-display {
+  font-family: var(--font-serif);
+}
+
+.font-editorial {
+  font-family: var(--font-editorial);
+}
+
+.font-sans-ui {
+  font-family: var(--font-sans);
+}
+
+/* Subtle organic grain overlay for premium showcase texture */
+.bg-noise {
+  background-image: radial-gradient(rgba(250, 247, 242, 0.06) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Custom sleek scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAF7F2;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #233D26;
+  border-radius: 9999px;
+  border: 2px solid #FAF7F2;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3A5A3E;
+}
+
