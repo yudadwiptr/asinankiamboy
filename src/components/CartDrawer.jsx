@@ -13,7 +13,9 @@ import {
   Flame,
 } from "lucide-react";
 import {
+  ALL_PRODUCTS,
   PRODUCT_PACKAGE,
+  MANGO_SAGO_PRODUCT,
   WHATSAPP_NUMBER,
   WHATSAPP_DISPLAY,
   STORE_INFO,
@@ -26,7 +28,7 @@ export default function CartDrawer({
   cartItems,
   onUpdateQty,
   onRemoveItem,
-  onAddQuickBox,
+  onAddProduct,
 }) {
   const [customerName, setCustomerName] = useState("");
   const [deliveryMethod, setDeliveryMethod] = useState("pickup");
@@ -40,14 +42,14 @@ export default function CartDrawer({
 
   const buildWhatsAppLink = () => {
     const lines = [
-      "Halo Kak *Asinan Kiamboy Milanial*! 🍊✨",
+      "Halo Kak *Asinan Kiamboy Milanial*! 🍊🥭✨",
       "Saya ingin memesan:",
       "",
       ...cartItems.map(
         (item, idx) =>
-          `${idx + 1}. *${item.name}* (Box Komplit) × ${
-            item.quantity
-          } box — ${formatRupiah(item.unitPrice * item.quantity)}`
+          `${idx + 1}. *${item.name}* × ${item.quantity} box — ${formatRupiah(
+            item.unitPrice * item.quantity
+          )}`
       ),
       "",
       `*Total Pesanan (${totalItems} Box): ${formatRupiah(totalPrice)}*`,
@@ -136,52 +138,53 @@ export default function CartDrawer({
             {/* Scrollable Cart Body */}
             <div className="flex-1 overflow-y-auto px-6 py-5 space-y-5">
               {cartItems.length === 0 ? (
-                <div className="py-8 text-center">
-                  <div className="w-24 h-24 mx-auto mb-4 rounded-2xl bg-white p-2 border border-[#233D26]/10 shadow-xs flex items-center justify-center">
-                    <img
-                      src={PRODUCT_PACKAGE.image}
-                      alt={PRODUCT_PACKAGE.name}
-                      className="w-full h-full object-contain"
-                    />
+                <div className="py-6 text-center">
+                  <div className="w-16 h-16 mx-auto mb-3 rounded-2xl bg-[#233D26]/8 text-[#233D26] flex items-center justify-center">
+                    <ShoppingBag className="w-8 h-8" />
                   </div>
-                  <h3 className="font-serif-display text-2xl font-semibold mb-1.5">
+                  <h3 className="font-serif-display text-2xl font-semibold mb-1">
                     Keranjang Masih Kosong
                   </h3>
                   <p className="text-xs sm:text-sm text-[#3A5A3E] mb-6 max-w-xs mx-auto leading-relaxed">
-                    1 Box Asinan Kiamboy Milanial (
-                    {formatRupiah(PRODUCT_PACKAGE.price)}) sudah komplit 8 isian
-                    buah segar dengan kuah pedas segar khas!
+                    Pilih menu favoritmu di bawah ini untuk mulai memesan!
                   </p>
 
-                  {/* Single Standard Box Card */}
-                  <div className="rounded-2xl bg-white p-4 border border-[#233D26]/10 shadow-xs text-left space-y-3">
-                    <div className="flex items-center gap-3.5">
-                      <img
-                        src={PRODUCT_PACKAGE.image}
-                        alt={PRODUCT_PACKAGE.name}
-                        className="w-16 h-16 shrink-0 aspect-square rounded-xl object-contain bg-[#FAF7F2] p-1"
-                      />
-                      <div className="min-w-0 flex-1">
-                        <h4 className="text-sm font-bold text-[#1B2E1E]">
-                          {PRODUCT_PACKAGE.name}
-                        </h4>
-                        <p className="text-[11px] text-[#3A5A3E] mt-0.5">
-                          8 Isian Buah Segar · Kuah Pedas Segar (Tidak Dipisah)
-                        </p>
-                        <p className="text-sm font-extrabold text-[#E63946] mt-1">
-                          {formatRupiah(PRODUCT_PACKAGE.price)} / Box
-                        </p>
-                      </div>
-                    </div>
+                  {/* 2 Products Quick Add Cards */}
+                  <div className="space-y-3 text-left">
+                    {ALL_PRODUCTS.map((prod) => (
+                      <div
+                        key={prod.id}
+                        className="rounded-2xl bg-white p-3.5 border border-[#233D26]/10 shadow-xs flex items-center justify-between gap-3"
+                      >
+                        <div className="flex items-center gap-3 min-w-0">
+                          <img
+                            src={prod.image}
+                            alt={prod.name}
+                            className="w-14 h-14 shrink-0 aspect-square rounded-xl object-contain bg-[#FAF7F2] p-1 border border-[#233D26]/8"
+                          />
+                          <div className="min-w-0 flex-1">
+                            <span className="inline-block rounded-full bg-[#233D26]/8 text-[#233D26] px-2 py-0.5 text-[9.5px] font-bold uppercase mb-0.5">
+                              {prod.category}
+                            </span>
+                            <h4 className="text-xs sm:text-sm font-bold text-[#1B2E1E] truncate">
+                              {prod.name}
+                            </h4>
+                            <p className="text-xs font-extrabold text-[#E63946] mt-0.5">
+                              {formatRupiah(prod.price)}
+                            </p>
+                          </div>
+                        </div>
 
-                    <button
-                      type="button"
-                      onClick={() => onAddQuickBox()}
-                      className="w-full inline-flex items-center justify-center gap-1.5 rounded-full bg-[#233D26] hover:bg-[#E63946] text-[#FAF7F2] px-4 py-3 text-xs sm:text-sm font-bold transition-colors cursor-pointer"
-                    >
-                      <Plus className="w-4 h-4" />
-                      <span>Tambah 1 Box ke Keranjang</span>
-                    </button>
+                        <button
+                          type="button"
+                          onClick={() => onAddProduct(prod)}
+                          className="shrink-0 inline-flex items-center gap-1 rounded-full bg-[#233D26] hover:bg-[#E63946] text-[#FAF7F2] px-3.5 py-2 text-xs font-bold transition-colors cursor-pointer"
+                        >
+                          <Plus className="w-3.5 h-3.5" />
+                          <span>Pesan</span>
+                        </button>
+                      </div>
+                    ))}
                   </div>
                 </div>
               ) : (
@@ -213,9 +216,12 @@ export default function CartDrawer({
                             </button>
                           </div>
 
-                          <span className="inline-flex items-center gap-1 rounded-full bg-[#FAF7F2] text-[#3A5A3E] px-2.5 py-0.5 text-[10.5px] font-semibold mt-0.5 mb-2 border border-[#233D26]/10">
-                            <Flame className="w-3 h-3 text-[#E63946] shrink-0" />
-                            <span>Komplit · Kuah Pedas Segar</span>
+                          <span className="inline-flex items-center gap-1 rounded-full bg-[#FAF7F2] text-[#3A5A3E] px-2 py-0.5 text-[10.5px] font-semibold mt-0.5 mb-2 border border-[#233D26]/10">
+                            {item.id === "mango-sago-box" ? (
+                              <span>🥭 Manis Creamy Dingin</span>
+                            ) : (
+                              <span>🍊 8 Isian Buah · Pedas Segar</span>
+                            )}
                           </span>
 
                           <div className="flex items-center justify-between">
@@ -254,9 +260,24 @@ export default function CartDrawer({
                       </div>
                     ))}
 
-                    <p className="text-[11px] text-[#3A5A3E] bg-[#233D26]/6 rounded-xl px-3 py-2 font-medium">
-                      Info: Semua box memiliki takaran kuah pedas segar khas yang sama & langsung dicampur agar meresap (kuah tidak dipisah).
-                    </p>
+                    {/* Quick Add Companion Product Pill if not added yet */}
+                    <div className="flex flex-wrap gap-2 pt-1">
+                      {ALL_PRODUCTS.filter(
+                        (p) => !cartItems.some((ci) => ci.id === p.id)
+                      ).map((p) => (
+                        <button
+                          key={p.id}
+                          type="button"
+                          onClick={() => onAddProduct(p)}
+                          className="inline-flex items-center gap-1.5 rounded-full bg-white hover:bg-[#233D26] hover:text-[#FAF7F2] text-[#1B2E1E] border border-[#233D26]/12 px-3 py-1.5 text-xs font-semibold shadow-2xs transition-colors cursor-pointer"
+                        >
+                          <Plus className="w-3 h-3 text-[#E63946]" />
+                          <span>
+                            + Tambah {p.shortName} ({formatRupiah(p.price)})
+                          </span>
+                        </button>
+                      ))}
+                    </div>
                   </div>
 
                   {/* Quick Order Details Form */}

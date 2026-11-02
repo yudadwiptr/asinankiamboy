@@ -4,8 +4,9 @@ import { ShoppingBag, Menu, X, MapPin } from "lucide-react";
 import { formatRupiah, TIKTOK_URL, TIKTOK_HANDLE } from "../data/asinanData";
 
 const NAV_LINKS = [
-  { label: "Isian Buah", href: "#hero-menu" },
-  { label: "Keunggulan", href: "#ingredients" },
+  { label: "Asinan", href: "#hero-menu" },
+  { label: "Mango Sago", href: "#mango-sago" },
+  { label: "Isian Buah", href: "#ingredients" },
   { label: "Reviews", href: "#reviews" },
   { label: "Lokasi", href: "#location" },
 ];
@@ -42,8 +43,13 @@ export default function Navbar({ totalItems, totalPrice, onOpenCart, cartBump })
             <a
               key={link.href}
               href={link.href}
-              className="px-4 py-2 rounded-full text-xs lg:text-sm font-medium text-[#FAF7F2]/88 hover:text-[#1A2E1C] hover:bg-[#FAF7F2] transition-all duration-200"
+              className={`px-3.5 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium transition-all duration-200 ${
+                link.label === "Mango Sago"
+                  ? "text-[#F7B267] hover:bg-[#F77F00] hover:text-[#FAF7F2] font-bold"
+                  : "text-[#FAF7F2]/88 hover:text-[#1A2E1C] hover:bg-[#FAF7F2]"
+              }`}
             >
+              {link.label === "Mango Sago" && <span className="mr-1">🥭</span>}
               {link.label}
             </a>
           ))}
@@ -103,8 +109,13 @@ export default function Navbar({ totalItems, totalPrice, onOpenCart, cartBump })
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center justify-center py-2.5 px-3 rounded-xl bg-[#FAF7F2]/8 hover:bg-[#FAF7F2] hover:text-[#1D3320] text-xs font-semibold transition-colors"
+                  className={`flex items-center justify-center py-2.5 px-3 rounded-xl text-xs font-semibold transition-colors ${
+                    link.label === "Mango Sago"
+                      ? "bg-[#F77F00]/20 text-[#F7B267] font-bold border border-[#F77F00]/30"
+                      : "bg-[#FAF7F2]/8 hover:bg-[#FAF7F2] hover:text-[#1D3320]"
+                  }`}
                 >
+                  {link.label === "Mango Sago" && <span className="mr-1">🥭</span>}
                   {link.label}
                 </a>
               ))}

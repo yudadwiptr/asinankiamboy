@@ -11,14 +11,55 @@ export const TIKTOK_URL =
   "https://www.tiktok.com/@ruzaqbogor?_r=1&_t=ZS-9AxWwNaV38Z";
 export const TIKTOK_HANDLE = "@ruzaqbogor";
 
-export const PRODUCT_PACKAGE = {
-  id: "asinan-komplit-box",
-  name: "Asinan Kiamboy Milanial",
-  subtitle: "1 Box Komplit · 8 Isian Buah Segar & Kuah Pedas Segar Khas",
-  tasteNote: "Kuah Pedas Segar Khas (Langsung Tercampur · Tidak Dipisah)",
-  price: 35000,
-  image: "/assets/hero-asinan-cutout.png",
-};
+export const ALL_PRODUCTS = [
+  {
+    id: "asinan-komplit-box",
+    name: "Asinan Kiamboy Milanial",
+    shortName: "Asinan Kiamboy",
+    category: "Signature Asinan",
+    tagline:
+      "Perpaduan 8 isian buah segar pilihan dengan siraman kuah kiamboy sonkit pedas segar autentik",
+    tasteNote: "Kuah Pedas Segar Khas (Langsung Tercampur · Tidak Dipisah)",
+    price: 35000,
+    image: "/assets/hero-asinan-cutout.png",
+    cardImage: "/assets/card-kiamboy.jpg",
+    badge: "Best Seller",
+    badgeColor: "bg-[#E63946]",
+    accentColor: "#E63946",
+    glowColor: "rgba(230, 57, 70, 0.34)",
+    highlights: [
+      "8 Isian Buah Segar",
+      "Plum Kiamboy Asli",
+      "Jeruk Sonkit Murni",
+      "Pedas Segar Mantap",
+    ],
+  },
+  {
+    id: "mango-sago-box",
+    name: "Creamy Mango Sago Milanial",
+    shortName: "Mango Sago",
+    category: "Dessert Creamy",
+    tagline:
+      "Dessert mangga manis creamy dengan limpahan puree mangga asli, sagu mutiara, jelly, dan taburan keju cheddar melimpah",
+    tasteNote: "Manis Creamy Dingin · Lumer dengan Keju Parut Melimpah",
+    price: 35000,
+    image: "/assets/hero-mango-sago-cutout.png",
+    cardImage: "/assets/card-mango-sago.jpg",
+    badge: "Menu Baru Favorit",
+    badgeColor: "bg-[#F77F00]",
+    accentColor: "#F59E0B",
+    glowColor: "rgba(245, 158, 11, 0.36)",
+    highlights: [
+      "Puree Mangga Asli",
+      "Susu Evaporasi Gurih",
+      "Sagu Mutiara & Jelly",
+      "Keju Parut Melimpah",
+    ],
+  },
+];
+
+export const PRODUCT_PACKAGE = ALL_PRODUCTS[0];
+export const MANGO_SAGO_PRODUCT = ALL_PRODUCTS[1];
 
 export const ASINAN_INGREDIENTS = [
   {
@@ -103,6 +144,33 @@ export const ASINAN_INGREDIENTS = [
   },
 ];
 
+export const MANGO_SAGO_LAYERS = [
+  {
+    id: "puree",
+    title: "100% Puree Mangga Asli",
+    desc: "Lapisan dasar kental dari buah mangga harum manis masak pohon tanpa pemanis buatan.",
+    icon: "🥭",
+  },
+  {
+    id: "milk",
+    title: "Kuah Susu Evaporasi Creamy",
+    desc: "Perpaduan susu evaporasi dan krimer gurih lembut yang lumer di mulut dan tidak bikin enek.",
+    icon: "🥛",
+  },
+  {
+    id: "sago-jelly",
+    title: "Sagu Mutiara & Jelly Kenyal",
+    desc: "Butiran sagu mutiara lembut berpadu potongan nata de coco/jelly yang kenyal segar.",
+    icon: "✨",
+  },
+  {
+    id: "cheese",
+    title: "Topping Keju Cheddar Melimpah",
+    desc: "Parutan keju cheddar gurih asin yang melengkapi manis creamy buah mangga secara sempurna.",
+    icon: "🧀",
+  },
+];
+
 // Backward-compatible export alias
 export const ASINAN_VARIANTS = ASINAN_INGREDIENTS;
 
@@ -155,9 +223,9 @@ export const CUSTOMER_REVIEWS = [
     timeAgo: "3 weeks ago",
     badge: "Verified Google Review",
     comment:
-      "Porsi buahnya royal banget, anggur sama lengkengnya manis berpadu kuah kiamboy asli. Masukin kulkas bentar sebelum dimakan siang-siang di Bogor langsung melek maksimal!",
+      "Porsi buahnya royal banget, asinan kiamboy dan mango sagonya sama-sama enak gila! Makan asinannya dulu terus ditutup mango sago dingin creamy bener-bener melek maksimal!",
     hasPhotoAttachment: false,
-    highlightTag: "Porsi Buah Royal",
+    highlightTag: "Kombo Sempurna",
   },
 ];
 

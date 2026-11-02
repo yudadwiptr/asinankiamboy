@@ -22,6 +22,7 @@ export default function HeroShowcase({
   activeIndex,
   setActiveIndex,
   onAddToCart,
+  onAddMangoSago,
 }) {
   const [justAdded, setJustAdded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -154,6 +155,13 @@ export default function HeroShowcase({
             <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
           </svg>
           <span>TikTok {TIKTOK_HANDLE}</span>
+        </a>
+        <a
+          href="#mango-sago"
+          className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#F77F00] to-[#E63946] hover:brightness-110 text-[#FAF7F2] px-3.5 py-1 text-[11px] sm:text-xs font-bold shadow-md transition-all"
+        >
+          <span>🥭 Menu Baru: Mango Sago Rp 35rb</span>
+          <span className="text-[10px] opacity-80">↓</span>
         </a>
       </div>
 
@@ -353,7 +361,7 @@ export default function HeroShowcase({
           <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
             <div className="inline-flex items-center gap-2 rounded-full bg-[#FAF7F2] text-[#1B2E1E] px-5 py-3 shadow-lg border border-[#FAF7F2]">
               <span className="text-[11px] font-bold uppercase tracking-wider text-[#3A5A3E]">
-                1 Box Komplit
+                1 Box Asinan
               </span>
               <span className="text-base sm:text-lg font-extrabold tracking-tight text-[#1B2E1E]">
                 {formatRupiah(PRODUCT_PACKAGE.price)}
@@ -365,10 +373,11 @@ export default function HeroShowcase({
               onClick={handleQuickAdd}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.96 }}
-              className={`inline-flex items-center gap-2.5 rounded-full px-6 sm:px-7 py-3.5 text-sm sm:text-base font-bold text-[#FAF7F2] shadow-[0_14px_30px_rgba(230,57,70,0.42)] transition-all cursor-pointer ${justAdded
+              className={`inline-flex items-center gap-2.5 rounded-full px-6 sm:px-7 py-3.5 text-sm sm:text-base font-bold text-[#FAF7F2] shadow-[0_14px_30px_rgba(230,57,70,0.42)] transition-all cursor-pointer ${
+                justAdded
                   ? "bg-[#2B8A3E]"
                   : "bg-gradient-to-r from-[#E63946] via-[#EE5626] to-[#F77F00] hover:brightness-105"
-                }`}
+              }`}
             >
               {justAdded ? (
                 <>
@@ -378,10 +387,22 @@ export default function HeroShowcase({
               ) : (
                 <>
                   <Plus className="w-4 h-4 stroke-[3]" />
-                  <span>Pesan Sekarang</span>
+                  <span>Pesan Asinan</span>
                 </>
               )}
             </motion.button>
+
+            {onAddMangoSago && (
+              <motion.button
+                type="button"
+                onClick={onAddMangoSago}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.96 }}
+                className="inline-flex items-center gap-2 rounded-full bg-[#FAF7F2]/14 hover:bg-[#FAF7F2] text-[#FAF7F2] hover:text-[#1B2E1E] border border-[#FAF7F2]/25 px-5 py-3.5 text-sm sm:text-base font-bold shadow-md transition-all cursor-pointer"
+              >
+                <span>+ Mango Sago ({formatRupiah(35000)})</span>
+              </motion.button>
+            )}
           </div>
         </div>
 

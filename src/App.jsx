@@ -4,13 +4,19 @@ import { ArrowRight } from "lucide-react";
 import ViewportFrame from "./components/ViewportFrame";
 import Navbar from "./components/Navbar";
 import HeroShowcase from "./components/HeroShowcase";
+import MangoSagoSection from "./components/MangoSagoSection";
 import AdvantagesSection from "./components/AdvantagesSection";
 import ReviewsSection from "./components/ReviewsSection";
 import LocationSection from "./components/LocationSection";
 import CartDrawer from "./components/CartDrawer";
-import { PRODUCT_PACKAGE, formatRupiah } from "./data/asinanData";
+import {
+  ALL_PRODUCTS,
+  PRODUCT_PACKAGE,
+  MANGO_SAGO_PRODUCT,
+  formatRupiah,
+} from "./data/asinanData";
 
-const STORAGE_KEY = "asinan_kiamboy_milanial_cart_v4";
+const STORAGE_KEY = "asinan_kiamboy_milanial_cart_v5";
 
 export default function App() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -33,34 +39,38 @@ export default function App() {
     }
   }, [cartItems]);
 
-  const handleAddBoxToCart = useCallback(() => {
-    const cartKey = PRODUCT_PACKAGE.id;
-    const unitPrice = PRODUCT_PACKAGE.price;
+  const handleAddProductToCart = useCallback(
+    (product = PRODUCT_PACKAGE) => {
+      const cartKey = product.id;
+      const unitPrice = product.price;
 
-    setCartItems((prev) => {
-      const existing = prev.find((item) => item.cartKey === cartKey);
-      if (existing) {
-        return prev.map((item) =>
-          item.cartKey === cartKey
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      }
-      return [
-        ...prev,
-        {
-          cartKey,
-          name: PRODUCT_PACKAGE.name,
-          image: PRODUCT_PACKAGE.image,
-          unitPrice,
-          quantity: 1,
-        },
-      ];
-    });
+      setCartItems((prev) => {
+        const existing = prev.find((item) => item.cartKey === cartKey);
+        if (existing) {
+          return prev.map((item) =>
+            item.cartKey === cartKey
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          );
+        }
+        return [
+          ...prev,
+          {
+            cartKey,
+            id: product.id,
+            name: product.name,
+            image: product.image,
+            unitPrice,
+            quantity: 1,
+          },
+        ];
+      });
 
-    setCartBump(true);
-    setTimeout(() => setCartBump(false), 450);
-  }, []);
+      setCartBump(true);
+      setTimeout(() => setCartBump(false), 450);
+    },
+    []
+  );
 
   const handleUpdateQty = useCallback((cartKey, nextQty) => {
     if (nextQty <= 0) {
@@ -110,13 +120,20 @@ export default function App() {
         <HeroShowcase
           activeIndex={activeIndex}
           setActiveIndex={setActiveIndex}
-          onAddToCart={handleAddBoxToCart}
+          onAddToCart={() => handleAddProductToCart(PRODUCT_PACKAGE)}
+          onAddMangoSago={() => handleAddProductToCart(MANGO_SAGO_PRODUCT)}
+        />
+
+        {/* Featured Mango Sago Section */}
+        <MangoSagoSection
+          onAddMangoSago={() => handleAddProductToCart(MANGO_SAGO_PRODUCT)}
+          onOpenCart={() => setIsCartOpen(true)}
         />
 
         <AdvantagesSection
           activeIndex={activeIndex}
           onSelectIngredient={handleSelectIngredientFromGrid}
-          onQuickAddBox={handleAddBoxToCart}
+          onQuickAddBox={() => handleAddProductToCart(PRODUCT_PACKAGE)}
         />
 
         <ReviewsSection />
@@ -136,7 +153,7 @@ export default function App() {
             <button
               type="button"
               onClick={() => setIsCartOpen(true)}
-              className="w-full flex items-center justify-between rounded-full bg-[#132315] text-[#FAF7F2] px-5 py-3.5 shadow-[0_16px_38px_rgba(0,0,0,0.38)] border border-[#FAF7F2]/15"
+              className="w-full flex items-center justify-between rounded-full bg-[#132315] text-[#FAF7F2] px-5 py-3.5 shadow-[0_16px_38px_rgba(0,0,0,0.38)] border border-[#FAF7F2]/15 cursor-pointer"
             >
               <div className="flex items-center gap-2.5">
                 <span className="inline-flex items-center justify-center w-7 h-7 shrink-0 aspect-square rounded-full bg-[#E63946] text-xs font-extrabold">
@@ -160,7 +177,7 @@ export default function App() {
         cartItems={cartItems}
         onUpdateQty={handleUpdateQty}
         onRemoveItem={handleRemoveItem}
-        onAddQuickBox={handleAddBoxToCart}
+        onAddProduct={handleAddProductToCart}
       />
     </div>
   );
